@@ -1,0 +1,10 @@
+{% extends 'default.html' %}
+{% block content %}
+    <ol class="h6 text-primary">
+    {% for item in groups %}
+        <li class="pb-2">
+            <a class="h6 text-decoration-none" href="{% url 'quizApp:quest' pk=item.pk %}">{{ item.name }}</a>
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends 'account/base.html' %}
+{% load account %}
+{% block content %}
+    <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h5 class="modal-title text-success">Подтвердите свой Email</h5>
+                </div>
+                <div class="modal-body p-5 pt-0">
+                    {% if confirmation %}
+                        <p>
+                            Подтвердите что
+                            <a class="text-decoration-none" href="mailto:{{ confirmation.email_address.email }}">
+                                {{ confirmation.email_address.email }}
+                            </a>
+                            является e-mail адресом пользователя <span class="text-primary">{{ confirmation.email_address.user }}</span>
+                        </p>
+                        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                            {% csrf_token %}
+                            <button class="w-100 mb-2 btn btn-lg btn-outline-primary" type="submit">Подтвердить</button>
+                        </form>
+                    {% else %}
+                        <p class="text-danger text-center">
+                            Код в ссылке уже недействителен или ошибочный
+                        </p>
+                        <p class="text-dark text-center">
+                            Пожалуйста
+                            <a class="text-decoration-none" href="{% url 'account_email' %}">
+                                отправьте новый запрос на подтверждение Email
+                            </a>
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        </div>
+    </div>
+{% endblock %}

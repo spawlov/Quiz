@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p>Здравствуйте, {{ name }}</p>
+    <p>Ознакомьтесь с новыми объявлениями на сайте:</p>
+    <ul>
+        {% for advert in adverts %}
+            <li><a href="{{ link }}/{{ advert.id }}/">{{ advert.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <p>Чтобы ознакомиться подробнее - кликните на заголовок объявления</p>
+</body>
+</html>

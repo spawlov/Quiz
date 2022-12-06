@@ -1,0 +1,27 @@
+{% extends 'default.html' %}
+{% block title_page %}Тест: "{{ quest.group.name }}"{% endblock %}
+{% block content %}
+    <h1 class="h5">{{ quest.title|linebreaks }}</h1>
+    {% if validate %}
+        <div class="alert alert-danger" role="alert">{{ validate }}</div>
+    {% endif %}
+    <div class="container-fluid">
+    <form action="{% url 'quizApp:answer' %}" method="post">
+        <fieldset class="form-control pt-3 pb-3">
+            {% csrf_token %}
+            {% for item in questions %}
+                <div class="form-check mx-3 mb-3">
+                    <input class="form-check-input" id="{{ item.pk }}" type="checkbox" name="answer" value="{{ item.pk }}">
+                    <label class="form-check-label" for="{{ item.pk }}">{{ item.text }}</label>
+                </div>
+            {% endfor %}
+            </ol>
+            <input name="test" type="hidden" value="{{ quest.group_id }}">
+            <input name="quest" type="hidden" value="{{ quest.id }}">
+            <div class="container-fluid pt-3">
+                <button type="submit" class="form-control btn btn-outline-primary" id="btn">Отправить</button>
+            </div>
+        </fieldset>
+    </form>
+    </div>
+{% endblock content %}

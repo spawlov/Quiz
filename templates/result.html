@@ -1,0 +1,24 @@
+{% extends 'default.html' %}
+{% block title_page %}
+    Результат прохождения теста - правильных ответов {{ count_correct }} из {{ count_question }} ({{ correct_percent }}%)
+{% endblock %}
+{% block content %}
+{% for item in answers.values %}
+    <div class="card mb-3">
+        <div class="card-header fst-italic text-primary">
+            {{ item.0|linebreaks }}
+        </div>
+        <div class="card-body">
+            <ol>
+                {% for answer in item.1.values %}
+                    {% if answer.1 %}
+                        <li class="card-text text-success">{{ answer.0 }}</li>
+                    {% else %}
+                        <li class="card-text text-danger fw-bolder">{{ answer.0 }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+{% endfor %}
+{% endblock content %}

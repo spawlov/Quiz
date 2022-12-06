@@ -1,0 +1,31 @@
+{% extends 'account/base.html' %}
+{% load account %}
+{% block content %}
+    <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h5 class="modal-title text-danger">Вы действительно хотите выйти?</h5>
+                </div>
+                <div class="modal-body p-5 pt-0">
+                    <form method="post" action="{% url 'account_logout' %}">
+                        {% csrf_token %}
+                        {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                        {% endif %}
+                        <button class="w-100 mb-2 btn btn-lg btn-outline-danger" type="submit">Подтвердить</button>
+                    </form>
+                </div>
+            </div>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        </div>
+    </div>
+{% endblock %}
